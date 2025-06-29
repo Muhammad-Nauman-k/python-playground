@@ -10,10 +10,12 @@ screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(0)  #Turn turtle animation on/off and set delay for update drawings
 
+#----- Class Objects init -----
 snake = Snake()
 food = Food()
 score = ScoreBoard()
 
+#----- Listening to key strokes -----
 screen.listen()
 screen.onkey(snake.up,"Up")
 screen.onkey(snake.down,"Down")
@@ -39,14 +41,17 @@ while game_is_on:
     x = snake.head.xcor()
     y = snake.head.ycor()
     if abs(x) > 280 or abs(y) > 280 :
-         game_is_on = False
-         score.gameover()
+        score.reset()
+        snake.snake_reset()
+        
 
     # Detect Collision with Tail
     for body in snake.snake_body[1:]:   #if body == snake.head:  (Skip the head)
         if snake.head.distance(body) < 10:
-            game_is_on = False
-            score.gameover()
+            score.reset()
+            snake.snake_reset()
+            
+            
     
     
     
