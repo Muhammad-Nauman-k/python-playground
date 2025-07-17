@@ -19,6 +19,9 @@ while len(guessed_states) < len(df["state"]):
     answer_state = turtle.textinput(title=f"{count}/{len(df['state'])} Correct Guess", prompt="Guess the State's name") # Ask the user to guess a state name
 
     if answer_state is None or answer_state.lower() == "exit":   # Exit the game 
+        not_guessed = [name for name in df["state"] if name not in guessed_states]
+        s = pd.DataFrame(not_guessed,columns=["state"])
+        s.to_csv("not_guessed.csv",index=False)
         break
 
     # Format the input to match the capitalization of state names
