@@ -14,7 +14,7 @@ df = pd.read_csv("50_states.csv")
 count = 0
 guessed_states = []
 
-while True:
+while len(guessed_states) < len(df["state"]):
     
     answer_state = turtle.textinput(title=f"{count}/{len(df['state'])} Correct Guess", prompt="Guess the State's name") # Ask the user to guess a state name
 
